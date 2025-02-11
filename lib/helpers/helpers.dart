@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:developer';
-import 'package:credbevy/helpers/global_variables/global_variables.dart';
 import 'package:credbevy/helpers/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,15 +17,6 @@ void showAppSnackbar(String message,
       colorText: textColor ?? AppColors.primaryColor,
       title,
       message);
-}
-
-Future<dynamic> showApplDialog(Widget child) async {
-  return await showDialog(
-    barrierDismissible: false,
-    barrierColor: Colors.black.withOpacity(0.5),
-    context: navigatorKey.currentContext!,
-    builder: (context) => child,
-  );
 }
 
 void logger(dynamic value) {

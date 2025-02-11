@@ -6,7 +6,6 @@ import 'package:credbevy/helpers/constants/spacing.dart';
 import 'package:credbevy/helpers/helpers.dart';
 import 'package:credbevy/helpers/theme/app_colors.dart';
 import 'package:credbevy/helpers/theme/textstyle.dart';
-import 'package:credbevy/screens/dashboard.dart';
 import 'package:credbevy/screens/success_page.dart';
 import 'package:credbevy/server/server.dart';
 import 'package:credbevy/widgets/amount_selector.dart';
@@ -68,7 +67,7 @@ class _SendMoneyState extends State<SendMoney> {
             children: [
               Platform.isAndroid ? const Gap(20) : const Gap(0),
               ProfileWidget(
-                onTap: () => Get.offAll(() => const Dashboard()),
+                onTap: () => Navigator.pop(context),
                 icon: "assets/home.png",
                 height: 16,
               ),
@@ -245,6 +244,7 @@ class _SendMoneyState extends State<SendMoney> {
     if (processResponse(response,
         showErrorMessage: true, showSuccessMessage: true)) {
       Get.offAll(() => SuccessPage(
+            ref: refController.text,
             recieverName: nameController.text,
             amountSent: amountController.text,
             data: response["message"],

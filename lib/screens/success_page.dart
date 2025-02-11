@@ -15,10 +15,12 @@ class SuccessPage extends StatefulWidget {
   final dynamic data;
   final String amountSent;
   final String recieverName;
+  final String ref;
   const SuccessPage(
       {super.key,
       required this.data,
       required,
+      required this.ref,
       required this.recieverName,
       required this.amountSent});
 
@@ -39,7 +41,7 @@ class _SuccessPageState extends State<SuccessPage> {
               textColor: AppColors.primaryColor,
               showButtonArrow: false,
               text: "Back",
-              onPressed: () => Get.off(() => const Dashboard()),
+              onPressed: () => Get.offAll(() => const Dashboard()),
             ),
             const Gap(28)
           ],
@@ -77,7 +79,7 @@ class _SuccessPageState extends State<SuccessPage> {
                         )
                       ])),
               const Gap(4),
-              Text("Ref: The latest batch 99.5% pure.",
+              Text("Ref: ${widget.ref}.",
                   style: body.copyWith(color: AppColors.labelTextColor)),
               //
             ])),

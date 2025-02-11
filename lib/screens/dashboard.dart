@@ -107,7 +107,8 @@ class _DashboardState extends State<Dashboard> {
                               fontWeight: FontWeight.w500))),
                   Image.asset(
                     "assets/filter.png",
-                    height: 14,
+                    height: 28,
+                    width: 28,
                   ),
                 ],
               ),
