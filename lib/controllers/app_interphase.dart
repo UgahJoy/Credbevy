@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppInterface extends GetxController with LocalDb {
-  ConnectionState networkCon = ConnectionState.active;
+  ConnectionState networkCon = ConnectionState.waiting;
   String dbKey = "";
   String serverKey = "";
 
@@ -43,10 +43,5 @@ class AppInterface extends GetxController with LocalDb {
       return jsonDecode(data);
     }
     return await LocalDb.getValue(key);
-  }
-
-  insertTime(String key) {
-    LocalDb.setValue(
-        "${key}inser_time", DateTime.now().millisecondsSinceEpoch.toString());
   }
 }

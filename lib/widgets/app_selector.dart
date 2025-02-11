@@ -45,12 +45,16 @@ class AppSelector extends StatelessWidget {
               height: height ?? 16,
             ),
             const Gap(8),
-            Text(title,
-                style: body.copyWith(
-                    fontSize: 16,
-                    color: index == curentIndex
-                        ? AppColors.black
-                        : AppColors.captionTextColor))
+            Expanded(
+              child: Text(title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: body.copyWith(
+                      fontSize: 16,
+                      color: index == curentIndex
+                          ? AppColors.black
+                          : AppColors.captionTextColor)),
+            )
           ],
         )),
       ),

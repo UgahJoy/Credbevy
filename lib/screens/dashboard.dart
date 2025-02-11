@@ -82,16 +82,19 @@ class _DashboardState extends State<Dashboard> {
             GetBuilder<GetAllCardsController>(builder: (controller) {
               return SizedBox(
                 height: 180,
-                child: ListView.builder(
-                    padding: const EdgeInsets.only(right: 16),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.allCards.length,
-                    itemBuilder: (context, index) =>
-                        controller.networkCon == ConnectionState.waiting
-                            ? const Center(child: CircularProgressIndicator())
-                            : AppCard(
-                                model: controller.allCards[index],
-                              )),
+                child: controller.networkCon == ConnectionState.waiting
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation(AppColors.buttonColor),
+                      ))
+                    : ListView.builder(
+                        padding: const EdgeInsets.only(right: 16),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.allCards.length,
+                        itemBuilder: (context, index) => AppCard(
+                              model: controller.allCards[index],
+                            )),
               );
             }),
             const Gap(20),
@@ -121,17 +124,21 @@ class _DashboardState extends State<Dashboard> {
                 height: double.infinity,
                 child:
                     GetBuilder<GetAllExpensesController>(builder: (controller) {
-                  return ListView.builder(
-                      clipBehavior: Clip.none,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: controller.allExpenses.length,
-                      itemBuilder: (context, index) =>
-                          controller.networkCon == ConnectionState.none
-                              ? const Center(child: CircularProgressIndicator())
-                              : TransactionContainerWidgets(
-                                  index: index,
-                                  model: controller.allExpenses[index],
-                                ));
+                  return controller.networkCon == ConnectionState.waiting
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation(AppColors.buttonColor),
+                        ))
+                      : ListView.builder(
+                          clipBehavior: Clip.none,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          itemCount: controller.allExpenses.length,
+                          itemBuilder: (context, index) =>
+                              TransactionContainerWidgets(
+                                index: index,
+                                model: controller.allExpenses[index],
+                              ));
                 }),
               ),
             )

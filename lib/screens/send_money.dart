@@ -32,11 +32,7 @@ class _SendMoneyState extends State<SendMoney> {
   final amountController = TextEditingController();
   int currentIndex = 0;
   int currentIndex2 = 0;
-  List<String> images = [
-    "assets/walter.png",
-    "assets/marie.png",
-    "assets/gustava.png"
-  ];
+  List<String> images = ["assets/walter.png", "assets/marie.png"];
   int beneficiaryID = 0;
   @override
   Widget build(BuildContext context) {
@@ -75,89 +71,109 @@ class _SendMoneyState extends State<SendMoney> {
               Text("Current Balance",
                   style: body.copyWith(fontSize: 15, color: AppColors.black)),
               GetBuilder<GetBalaceController>(builder: (controller) {
-                return Text("\$${amount(controller.balance)}", style: header);
+                return controller.networkCon == ConnectionState.waiting
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation(AppColors.buttonColor),
+                      ))
+                    : Text("\$${amount(controller.balance)}", style: header);
               }),
-              const Gap(20),
-              Row(
-                children: [
-                  AppSelector(
-                      curentIndex: currentIndex2,
-                      image: "assets/favorites.png",
-                      index: 0,
-                      onTap: () {
-                        currentIndex2 = 0;
-                        setState(() {});
-                      },
-                      title: "Favourites"),
-                  const Gap(20),
-                  AppSelector(
-                      height: 17,
-                      curentIndex: currentIndex2,
-                      image: "assets/friends.png",
-                      index: 1,
-                      onTap: () {
-                        currentIndex2 = 1;
-                        setState(() {});
-                      },
-                      title: "All Friends"),
-                  const Spacer(),
-                  Container(
-                    height: 36,
-                    width: 36,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: AppColors.black),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                        child: Image.asset(
-                      "assets/plus.png",
-                      height: 17,
-                    )),
-                  )
-                ],
-              ),
-              const Gap(16),
-              GetBuilder<GetAllBenefiaciariesController>(
-                  builder: (controlller) {
-                return SizedBox(
-                  height: 175,
-                  child: ListView.builder(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controlller.allBeneficiariesModel.length,
-                    itemBuilder: (context, index) =>
-                        Builder(builder: (context) {
-                      return controlller.networkCon == ConnectionState.none
-                          ? const Center(child: CircularProgressIndicator())
-                          : BeneficiariesSelector(
-                              name: controlller
-                                      .allBeneficiariesModel[index].fullname ??
-                                  "",
-                              image: images[index],
-                              index: index,
-                              currentIndex: currentIndex,
-                              onTap: () {
-                                currentIndex = index;
-                                beneficiaryID = controlller
-                                        .allBeneficiariesModel[index].id ??
-                                    0;
-                                nameController.text = controlller
-                                        .allBeneficiariesModel[index]
-                                        .fullname ??
-                                    "";
-
-                                setState(() {});
-                              });
-                    }),
-                  ),
-                );
-              }),
-              const Gap(20),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      const Gap(20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppSelector(
+                                curentIndex: currentIndex2,
+                                image: "assets/favorites.png",
+                                index: 0,
+                                onTap: () {
+                                  currentIndex2 = 0;
+                                  setState(() {});
+                                },
+                                title: "Favourites"),
+                          ),
+                          const Gap(16),
+                          Expanded(
+                            child: AppSelector(
+                                height: 17,
+                                curentIndex: currentIndex2,
+                                image: "assets/friends.png",
+                                index: 1,
+                                onTap: () {
+                                  currentIndex2 = 1;
+                                  setState(() {});
+                                },
+                                title: "All Friends"),
+                          ),
+                          //const Spacer(),
+                          Container(
+                            height: 36,
+                            width: 36,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 0.5, color: AppColors.black),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                                child: Image.asset(
+                              "assets/plus.png",
+                              height: 17,
+                            )),
+                          )
+                        ],
+                      ),
+                      const Gap(16),
+                      GetBuilder<GetAllBenefiaciariesController>(
+                          builder: (controlller) {
+                        return controlller.networkCon == ConnectionState.waiting
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    AppColors.buttonColor),
+                              ))
+                            : SizedBox(
+                                height: 175,
+                                child: ListView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 0, vertical: 4),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount:
+                                      controlller.allBeneficiariesModel.length,
+                                  itemBuilder: (context, index) =>
+                                      Builder(builder: (context) {
+                                    return BeneficiariesSelector(
+                                        name: controlller
+                                                .allBeneficiariesModel[index]
+                                                .fullname ??
+                                            "",
+                                        image: index % 2 == 0
+                                            ? images[0]
+                                            : images[1],
+                                        index: index,
+                                        currentIndex: currentIndex,
+                                        onTap: () {
+                                          currentIndex = index;
+                                          beneficiaryID = controlller
+                                                  .allBeneficiariesModel[index]
+                                                  .id ??
+                                              0;
+                                          nameController.text = controlller
+                                                  .allBeneficiariesModel[index]
+                                                  .fullname ??
+                                              "";
+
+                                          setState(() {});
+                                        });
+                                  }),
+                                ),
+                              );
+                      }),
+                      const Gap(20),
                       AppTextField(
                           labelText: "Name",
                           controller: nameController,
