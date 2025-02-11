@@ -32,7 +32,7 @@ Follow these steps to set up the project locally and start contributing to the c
 ```bash
 git clone https://github.com/<your-username>/credbevy.git
 cd credbevy
-
+```
 
 ### 2. Install dependencies
 
@@ -40,3 +40,4 @@ Make sure you have Flutter and Dart set up on your machine. Run the following co
 
 ```bash
 flutter pub get
+```
