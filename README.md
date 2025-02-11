@@ -1,6 +1,6 @@
 # Credbevy
 
-**Credbevy** is a Flutter application designed to ease bill payments,daily expenditures and track these bill transactions. This repository contains the source code and setup instructions to help you get started with the app development.
+**Credbevy** is a Flutter application designed to simplify financial management by offering virtual cards, seamless bill payment solutions, and effortless transfer capabilities, all while providing a secure and efficient way to manage your transactions and expenses. This repository contains the source code and setup instructions to help you get started with the app development.
 
 ## Prerequisites
 
