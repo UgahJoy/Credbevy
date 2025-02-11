@@ -60,6 +60,3 @@ flutter run
 ### 5. Development workflow
 
 - Use **VS Code** or **Android Studio** for the best development experience.
-- **Hot reload** and **hot restart** are supported for rapid development.
-  - Hot reload: Allows you to instantly see changes made to your code without restarting the app.
-  - Hot restart: Fully restarts the app, helpful when making changes that require a full app restart.
