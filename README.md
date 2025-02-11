@@ -1,6 +1,6 @@
 # Credbevy
 
-**Credbevy** is a Flutter application designed to [briefly describe the purpose of your app]. This repository contains the source code and setup instructions to help you get started with the app development.
+**Credbevy** is a Flutter application designed to ease bill payemnts and track those bill transactions. This repository contains the source code and setup instructions to help you get started with the app development.
 
 ## Prerequisites
 
@@ -25,13 +25,13 @@ This project was developed and tested on the following environment:
 
 ## Getting Started
 
-Follow these steps to set up the project locally and start contributing to the codebase.
+Follow these steps to set up the project locally.
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/credbevy.git
-cd credbevy
+git clone https://github.com/UgahJoy/Credbevy.git
+cd Credbevy
 ```
 
 ### 2. Install dependencies
