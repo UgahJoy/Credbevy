@@ -21,7 +21,7 @@ This project was developed and tested on the following environment:
 - **Xcode**: Version 16.0
 - **Android Studio**: Version 2024.2
 - **VS Code**: Version 1.96.4
-- **Connected Devices**: Android, iOS, Web (Chrome)
+- **Connected Devices**: Android, iOS
 
 ## Getting Started
 
@@ -41,3 +41,25 @@ Make sure you have Flutter and Dart set up on your machine. Run the following co
 ```bash
 flutter pub get
 ```
+
+### 3. Set up your devices
+
+Ensure you have an emulator or physical device running, whether for Android or iOS.
+
+- For Android: Run `flutter devices` to ensure your Android device is connected.
+- For iOS: Ensure your iOS device is connected and recognized by Xcode.
+
+### 4. Run the app
+
+To run the app on an Android, iOS, or web platform, use the following command:
+
+```bash
+flutter run
+```
+
+### 5. Development workflow
+
+- Use **VS Code** or **Android Studio** for the best development experience.
+- **Hot reload** and **hot restart** are supported for rapid development.
+  - Hot reload: Allows you to instantly see changes made to your code without restarting the app.
+  - Hot restart: Fully restarts the app, helpful when making changes that require a full app restart.
